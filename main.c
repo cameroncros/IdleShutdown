@@ -67,7 +67,6 @@ void printreport(PJOB job)
     {
         if (job->ports[i] != 0 && job->ports[i] != -1) {
             printf("%i:\t%i\n", i, job->ports[i]);
-
         }
     }
     printf("\n");
@@ -99,7 +98,7 @@ void parseports(char* portstr, PJOB job)
         {
             job->ports[val] = 0;
         }
-        
+
         // Seel to end of number.
         while (portstr[i] >= '0' && portstr[i] <= '9') i++;
     }
@@ -141,7 +140,7 @@ void waitfortraffic(int sock, PJOB job)
     time(&now);
 
     time_t end = now + job->timeout;
-    
+
     for (; now < end; time(&now))
     {
         // Poll for new data
@@ -196,7 +195,7 @@ int main(int argc, char** argv)
         perror("Create socket failed: ");
         exit(errno);
     }
-    
+
     waitfortraffic(sock, &job);
 
     return 0;
